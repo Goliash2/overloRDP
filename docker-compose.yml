@@ -19,8 +19,6 @@ services:
     container_name: backend.overlordp
     environment:
       DATABASE_URL: mongodb://db.overlordp/overlordp
-    volumes:
-      - overlordp-data:/data
     depends_on:
       - mongodb
     restart: always
