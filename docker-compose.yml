@@ -1,0 +1,31 @@
+version: "3.9"
+
+volumes:
+  overlordp-db:
+
+services:
+
+  mongodb:
+    image: 'mongo'
+    volumes:
+      - overlordp-db:/data/db
+    container_name: db.overlordp
+    environment:
+      MONGO_INITDB_DATABASE: overlordp
+    restart: always
+
+  backend:
+    build: ./server
+    container_name: backend.overlordp
+    environment:
+      DATABASE_URL: mongodb://db.overlordp/overlordp
+    volumes:
+      - overlordp-data:/data
+    depends_on:
+      - mongodb
+    restart: always
+
+networks:
+  default:
+    external:
+      name: global-npm-net
