@@ -19,6 +19,12 @@ export interface Login {
     username?: string;
 }
 
+export interface LastState {
+    pc: string;
+    eventid: number;
+    timestamp: string;
+}
+
 export interface LoginMongo extends mongoose.Document {
     id?: string;
     timestamp: string;

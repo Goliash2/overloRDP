@@ -1,7 +1,7 @@
 import {Injectable} from '@nestjs/common';
 import {InjectModel} from "@nestjs/mongoose";
 import {Model} from "mongoose";
-import {Login, LoginMongo} from "./login.model";
+import {LastState, Login, LoginMongo} from "./login.model";
 import {from, Observable} from "rxjs";
 import {map} from "rxjs/operators";
 
@@ -32,5 +32,20 @@ export class LoginsService {
 
     getAllEvents(): Observable<Login[]> {
         return from(this.loginModel.find().exec());
+    }
+
+    getLastStates(): LastState {
+        return from(this.loginModel.aggregate([
+            {
+                $sort: {timestamp: -1}
+            },
+            {
+                $group: {
+                    pc: '$providername',
+                    eventid: {$first: '$eventid'},
+                    timestamp: {$first: '$timestamp'}
+                }
+            }
+        ]).exec()) as unknown as LastState;
     }
 }

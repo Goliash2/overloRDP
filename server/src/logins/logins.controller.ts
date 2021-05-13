@@ -28,4 +28,9 @@ export class LoginsController {
     async getAllEvents() {
         return this.loginsService.getAllEvents();
     }
+
+    @Get('laststates')
+    async getLastStates() {
+        return this.loginsService.getLastStates();
+    }
 }
