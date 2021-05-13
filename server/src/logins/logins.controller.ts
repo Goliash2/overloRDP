@@ -1,4 +1,4 @@
-import { Controller, Body, Post } from '@nestjs/common';
+import {Controller, Body, Post, Get} from '@nestjs/common';
 import {LoginsService} from "./logins.service";
 import {catchError, map} from "rxjs/operators";
 import {Observable, of} from "rxjs";
@@ -17,5 +17,15 @@ export class LoginsController {
             map((login: Login) => login),
             catchError(err => of({error: "e1 " + err.message}))
         );
+    }
+
+    @Get('today')
+    async getTodayEvents() {
+        return this.loginsService.getTodayEvents();
+    }
+
+    @Get('all')
+    async getAllEvents() {
+        return this.loginsService.getAllEvents();
     }
 }

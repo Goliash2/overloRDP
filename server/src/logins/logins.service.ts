@@ -21,4 +21,16 @@ export class LoginsService {
             })
         )
     }
+
+    getTodayEvents(): Observable<Login[]> {
+        return from(this.loginModel.find({ $where: function() {
+                const today = new Date(); //
+                today.setHours(0,0,0,0);
+                return (this._id.getTimestamp() >= today)
+            } }).exec());
+    }
+
+    getAllEvents(): Observable<Login[]> {
+        return from(this.loginModel.find().exec());
+    }
 }
