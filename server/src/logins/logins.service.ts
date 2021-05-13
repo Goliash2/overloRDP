@@ -41,7 +41,7 @@ export class LoginsService {
             },
             {
                 $group: {
-                    pc: '$providername',
+                    _id: '$providername',
                     eventid: {$first: '$eventid'},
                     timestamp: {$first: '$timestamp'}
                 }

@@ -20,7 +20,7 @@ export interface Login {
 }
 
 export interface LastState {
-    pc: string;
+    id?: string;
     eventid: number;
     timestamp: string;
 }
