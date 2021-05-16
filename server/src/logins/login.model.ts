@@ -23,6 +23,7 @@ export interface LastState {
     id?: string;
     eventid: number;
     timestamp: string;
+    since: string;
 }
 
 export interface LoginMongo extends mongoose.Document {

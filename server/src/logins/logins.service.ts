@@ -43,7 +43,8 @@ export class LoginsService {
                 $group: {
                     _id: '$providername',
                     eventid: {$first: '$eventid'},
-                    timestamp: {$first: '$timestamp'}
+                    timestamp: {$first: '$timestamp'},
+                    since: { $arrayElemAt: [ '$timestamp', 2 ] }
                 }
             }
         ]).exec()) as unknown as LastState;
