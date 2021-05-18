@@ -34,6 +34,8 @@ export class LoginsService {
         return from(this.loginModel.find().exec());
     }
 
+    
+
     getLastStates(): LastState {
         return from(this.loginModel.aggregate([
             {

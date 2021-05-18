@@ -14,7 +14,7 @@ export interface Login {
     timestamp: string;
     eventid: number;
     providername: string;
-    description: string;
+    description?: string;
     ipaddress: string;
     username?: string;
 }
@@ -31,7 +31,7 @@ export interface LoginMongo extends mongoose.Document {
     timestamp: string;
     eventid: number;
     providername: string;
-    description: string;
+    description?: string;
     ipaddress: string;
     username?: string;
 }
