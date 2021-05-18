@@ -39,7 +39,7 @@ export class LoginsService {
     getLastStates(): LastState {
         return from(this.loginModel.aggregate([
             {
-                $match: {eventid: {$not: 4625}}
+                $match: {eventid: {$ne: 4625}}
             },
             {
                 $sort: {timestamp: -1}
