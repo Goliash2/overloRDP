@@ -4,7 +4,7 @@ import {catchError, map} from "rxjs/operators";
 import {Observable, of} from "rxjs";
 import {Login} from "../login.model";
 
-@Controller('fails')
+@Controller('login/fails')
 export class FailsController {
     constructor(
         private readonly failsService: FailsService

@@ -19,7 +19,6 @@ export class FailsService {
             timestamp: 1,
             eventid: 1,
             providername: 1,
-            description: 0,
             ipaddress: 1,
             username: 1
         }).exec());
@@ -37,7 +36,6 @@ export class FailsService {
             timestamp: 1,
             eventid: 1,
             providername: 1,
-            description: 0,
             ipaddress: 1,
             username: 1
         }).exec());
