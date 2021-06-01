@@ -20,13 +20,13 @@ export class LoginsController {
     }
 
     @Get('today')
-    async getTodayEvents(@Param('limit') limit: number, @Param('skip') skip: number) {
-        return this.loginsService.getTodayEvents(skip, limit);
+    async getTodayEvents(@Param('limit') limit: number, @Param('skip') skip: number, @Param('sortBy') sortBy: string, @Param('direction') direction: number) {
+        return this.loginsService.getTodayEvents(skip, limit, sortBy, direction);
     }
 
     @Get('all')
-    async getAllEvents(@Param('limit') limit: number, @Param('skip') skip: number) {
-        return this.loginsService.getAllEvents(skip, limit);
+    async getAllEvents(@Param('limit') limit: number, @Param('skip') skip: number, @Param('sortBy') sortBy: string, @Param('direction') direction: number) {
+        return this.loginsService.getAllEvents(skip, limit, sortBy, direction);
     }
 
     @Get('laststates')

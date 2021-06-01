@@ -22,16 +22,16 @@ export class LoginsService {
         )
     }
 
-    getTodayEvents(skip = 0, limit = 20): Observable<Login[]> {
+    getTodayEvents(skip = 0, limit = 20, sortBy = 'timestamp', direction = -1): Observable<Login[]> {
         return from(this.loginModel.find({ $where: function() {
                 const today = new Date(); //
                 today.setHours(0,0,0,0);
                 return (this._id.getTimestamp() >= today)
-            } }).skip(skip).limit(limit).exec());
+            } }).skip(skip).limit(limit).sort({[sortBy]: direction}).exec());
     }
 
-    getAllEvents(skip = 0, limit = 20): Observable<Login[]> {
-        return from(this.loginModel.find().skip(skip).limit(limit).exec());
+    getAllEvents(skip = 0, limit = 20, sortBy = 'timestamp', direction = -1): Observable<Login[]> {
+        return from(this.loginModel.find().skip(skip).limit(limit).sort({[sortBy]: direction}).exec());
     }
 
 
