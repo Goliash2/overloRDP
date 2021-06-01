@@ -19,6 +19,7 @@ services:
     container_name: backend.overlordp
     environment:
       DATABASE_URL: mongodb://db.overlordp/overlordp
+      NODE_OPTIONS: --max-old-space-size=4096
     depends_on:
       - mongodb
     restart: always
