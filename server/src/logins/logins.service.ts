@@ -16,7 +16,6 @@ export class LoginsService {
         const newLogin = new this.loginModel(login);
         return from(newLogin.save()).pipe(
             map((login: LoginMongo) => {
-                console.log(login);
                 return login._id;
             })
         )
