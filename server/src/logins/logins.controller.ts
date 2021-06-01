@@ -1,4 +1,4 @@
-import {Controller, Body, Post, Get, Param, Query} from '@nestjs/common';
+import {Controller, Body, Post, Get, Query, ParseIntPipe} from '@nestjs/common';
 import {LoginsService} from "./logins.service";
 import {catchError, map} from "rxjs/operators";
 import {Observable, of} from "rxjs";
@@ -20,12 +20,12 @@ export class LoginsController {
     }
 
     @Get('today')
-    async getTodayEvents(@Query('limit') limit: number, @Query('skip') skip: number, @Query('sortBy') sortBy: string, @Query('direction') direction: number) {
+    async getTodayEvents(@Query('limit', ParseIntPipe) limit: number, @Query('skip', ParseIntPipe) skip: number, @Query('sortBy') sortBy: string, @Query('direction', ParseIntPipe) direction: number) {
         return this.loginsService.getTodayEvents(skip, limit, sortBy, direction);
     }
 
     @Get('all')
-    async getAllEvents(@Query('limit') limit: number, @Query('skip') skip: number, @Query('sortBy') sortBy: string, @Query('direction') direction: number) {
+    async getAllEvents(@Query('limit', ParseIntPipe) limit: number, @Query('skip', ParseIntPipe) skip: number, @Query('sortBy') sortBy: string, @Query('direction', ParseIntPipe) direction: number) {
         return this.loginsService.getAllEvents(skip, limit, sortBy, direction);
     }
 

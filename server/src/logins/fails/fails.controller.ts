@@ -1,8 +1,5 @@
-import {Controller, Body, Post, Get, Param, Query} from '@nestjs/common';
+import {Controller, Get, Query, ParseIntPipe} from '@nestjs/common';
 import {FailsService} from "./fails.service";
-import {catchError, map} from "rxjs/operators";
-import {Observable, of} from "rxjs";
-import {Login} from "../login.model";
 
 @Controller('login/fails')
 export class FailsController {
@@ -12,12 +9,12 @@ export class FailsController {
     }
 
     @Get('all')
-    async getAllFailedEvents(@Query('limit') limit: number, @Query('skip') skip: number, @Query('sortBy') sortBy: string, @Query('direction') direction: number) {
+    async getAllFailedEvents(@Query('limit', ParseIntPipe) limit: number, @Query('skip', ParseIntPipe) skip: number, @Query('sortBy') sortBy: string, @Query('direction', ParseIntPipe) direction: number) {
         return this.failsService.getAllFailedEvents(skip, limit, sortBy, direction);
     }
 
     @Get('today')
-    async getTodayFailedEvents(@Query('limit') limit: number, @Query('skip') skip: number, @Query('sortBy') sortBy: string, @Query('direction') direction: number) {
+    async getTodayFailedEvents(@Query('limit', ParseIntPipe) limit: number, @Query('skip', ParseIntPipe) skip: number, @Query('sortBy') sortBy: string, @Query('direction', ParseIntPipe) direction: number) {
         return this.failsService.getTodayFailedEvents(skip, limit, sortBy, direction);
     }
 }
