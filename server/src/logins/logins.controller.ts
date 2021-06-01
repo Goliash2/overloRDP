@@ -20,13 +20,13 @@ export class LoginsController {
     }
 
     @Get('today')
-    async getTodayEvents(@Query('limit', ParseIntPipe) limit: number, @Query('skip', ParseIntPipe) skip: number, @Query('sortBy') sortBy: string, @Query('direction', ParseIntPipe) direction: number) {
-        return this.loginsService.getTodayEvents(skip, limit, sortBy, direction);
+    async getTodayEvents(@Query('limit') limit: any, @Query('skip') skip: any, @Query('sortBy') sortBy: string, @Query('direction') direction: any) {
+        return this.loginsService.getTodayEvents(parseInt(skip), parseInt(limit), sortBy, parseInt(direction));
     }
 
     @Get('all')
-    async getAllEvents(@Query('limit', ParseIntPipe) limit: number, @Query('skip', ParseIntPipe) skip: number, @Query('sortBy') sortBy: string, @Query('direction', ParseIntPipe) direction: number) {
-        return this.loginsService.getAllEvents(skip, limit, sortBy, direction);
+    async getAllEvents(@Query('limit') limit: any, @Query('skip') skip: any, @Query('sortBy') sortBy: string, @Query('direction') direction: any) {
+        return this.loginsService.getAllEvents(parseInt(skip), parseInt(limit), sortBy, parseInt(direction));
     }
 
     @Get('laststates')

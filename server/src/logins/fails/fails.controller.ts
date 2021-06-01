@@ -9,12 +9,12 @@ export class FailsController {
     }
 
     @Get('all')
-    async getAllFailedEvents(@Query('limit', ParseIntPipe) limit: number, @Query('skip', ParseIntPipe) skip: number, @Query('sortBy') sortBy: string, @Query('direction', ParseIntPipe) direction: number) {
-        return this.failsService.getAllFailedEvents(skip, limit, sortBy, direction);
+    async getAllFailedEvents(@Query('limit') limit: any, @Query('skip') skip: any, @Query('sortBy') sortBy: string, @Query('direction') direction: any) {
+        return this.failsService.getAllFailedEvents(parseInt(skip), parseInt(limit), sortBy, parseInt(direction));
     }
 
     @Get('today')
-    async getTodayFailedEvents(@Query('limit', ParseIntPipe) limit: number, @Query('skip', ParseIntPipe) skip: number, @Query('sortBy') sortBy: string, @Query('direction', ParseIntPipe) direction: number) {
-        return this.failsService.getTodayFailedEvents(skip, limit, sortBy, direction);
+    async getTodayFailedEvents(@Query('limit') limit: any, @Query('skip') skip: any, @Query('sortBy') sortBy: string, @Query('direction') direction: any) {
+        return this.failsService.getTodayFailedEvents(parseInt(skip), parseInt(limit), sortBy, parseInt(direction));
     }
 }
