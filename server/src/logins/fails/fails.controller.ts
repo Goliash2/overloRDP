@@ -1,4 +1,4 @@
-import {Controller, Body, Post, Get} from '@nestjs/common';
+import {Controller, Body, Post, Get, Param} from '@nestjs/common';
 import {FailsService} from "./fails.service";
 import {catchError, map} from "rxjs/operators";
 import {Observable, of} from "rxjs";
@@ -12,12 +12,12 @@ export class FailsController {
     }
 
     @Get('all')
-    async getAllFailedEvents() {
-        return this.failsService.getAllFailedEvents();
+    async getAllFailedEvents(@Param('limit') limit: number, @Param('skip') skip: number, @Param('sortBy') sortBy: string, @Param('direction') direction: number) {
+        return this.failsService.getAllFailedEvents(skip, limit, sortBy, direction);
     }
 
     @Get('today')
-    async getTodayFailedEvents() {
-        return this.failsService.getTodayFailedEvents();
+    async getTodayFailedEvents(@Param('limit') limit: number, @Param('skip') skip: number, @Param('sortBy') sortBy: string, @Param('direction') direction: number) {
+        return this.failsService.getTodayFailedEvents(skip, limit, sortBy, direction);
     }
 }

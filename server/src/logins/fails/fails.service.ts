@@ -12,7 +12,7 @@ export class FailsService {
     ) {
     }
 
-    getAllFailedEvents(): Observable<Login[]> {
+    getAllFailedEvents(skip = 0, limit = 20, sortBy = 'timestamp', direction = -1): Observable<Login[]> {
         return from(this.loginModel.find({
             "eventid": 4625
         }, {
@@ -21,10 +21,10 @@ export class FailsService {
             providername: 1,
             ipaddress: 1,
             username: 1
-        }).exec());
+        }).skip(skip).limit(limit).sort({[sortBy]: direction}).exec());
     }
 
-    getTodayFailedEvents(): Observable<Login[]> {
+    getTodayFailedEvents(skip = 0, limit = 20, sortBy = 'timestamp', direction = -1): Observable<Login[]> {
         return from(this.loginModel.find({
             $where: function() {
                 const today = new Date(); //
@@ -38,6 +38,6 @@ export class FailsService {
             providername: 1,
             ipaddress: 1,
             username: 1
-        }).exec());
+        }).skip(skip).limit(limit).sort({[sortBy]: direction}).exec());
     }
 }
