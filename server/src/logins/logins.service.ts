@@ -22,19 +22,19 @@ export class LoginsService {
         )
     }
 
-    getTodayEvents(): Observable<Login[]> {
+    getTodayEvents(skip = 0, limit = 20): Observable<Login[]> {
         return from(this.loginModel.find({ $where: function() {
                 const today = new Date(); //
                 today.setHours(0,0,0,0);
                 return (this._id.getTimestamp() >= today)
-            } }).exec());
+            } }).skip(skip).limit(limit).exec());
     }
 
-    getAllEvents(): Observable<Login[]> {
-        return from(this.loginModel.find().exec());
+    getAllEvents(skip = 0, limit = 20): Observable<Login[]> {
+        return from(this.loginModel.find().skip(skip).limit(limit).exec());
     }
 
-    
+
 
     getLastStates(): LastState {
         return from(this.loginModel.aggregate([

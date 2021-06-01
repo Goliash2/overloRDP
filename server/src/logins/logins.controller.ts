@@ -1,4 +1,4 @@
-import {Controller, Body, Post, Get} from '@nestjs/common';
+import {Controller, Body, Post, Get, Param} from '@nestjs/common';
 import {LoginsService} from "./logins.service";
 import {catchError, map} from "rxjs/operators";
 import {Observable, of} from "rxjs";
@@ -20,13 +20,13 @@ export class LoginsController {
     }
 
     @Get('today')
-    async getTodayEvents() {
-        return this.loginsService.getTodayEvents();
+    async getTodayEvents(@Param('limit') limit: number, @Param('skip') skip: number) {
+        return this.loginsService.getTodayEvents(skip, limit);
     }
 
     @Get('all')
-    async getAllEvents() {
-        return this.loginsService.getAllEvents();
+    async getAllEvents(@Param('limit') limit: number, @Param('skip') skip: number) {
+        return this.loginsService.getAllEvents(skip, limit);
     }
 
     @Get('laststates')
